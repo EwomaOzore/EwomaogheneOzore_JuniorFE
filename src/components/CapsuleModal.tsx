@@ -26,11 +26,27 @@ const CapsuleModal: React.FC<CapsuleModalProps> = ({ capsule, onClose }) => {
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">{capsule.capsule_serial}</h2>
           <button className="text-gray-500 hover:text-gray-700" onClick={onClose}>
-          <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} />
           </button>
         </div>
-        <p className="text-gray-700 mb-4">{capsule.details || 'No details available'}</p>
-        {/* Add more detailed information */}
+        <p className="text-gray-700 mb-2"><span className="font-semibold">Status:</span> {capsule.status}</p>
+        <p className="text-gray-700 mb-2"><span className="font-semibold">Original Launch:</span> {capsule.original_launch}</p>
+        <p className="text-gray-700 mb-2"><span className="font-semibold">Number of Landings:</span> {capsule.landings}</p>
+        <p className="text-gray-700 mb-2"><span className="font-semibold">Type:</span> {capsule.type}</p>
+        <p className="text-gray-700 mb-4"><span className="font-semibold">Reuse Count:</span> {capsule.reuse_count}</p>
+        <div>
+          <h3 className="text-lg font-semibold mb-2">Missions:</h3>
+          {capsule.missions.length > 0 ? (
+            <ul className="list-disc list-inside">
+              {capsule.missions.map((mission, index) => (
+                <li key={index}>{mission.name} (Flight {mission.flight})</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No missions available</p>
+          )}
+        </div>
+        <p className="text-gray-700 mt-4">{capsule.details || 'No details available'}</p>
       </div>
     </div>
   );
