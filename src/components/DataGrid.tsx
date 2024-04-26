@@ -104,7 +104,7 @@ const DataGrid: React.FC<DataGridProps> = ({ rockets }) => {
     };
 
     return (
-        <div className="container mx-auto px-4 py-8">
+        <div className="container mx-auto py-8">
             <h1 className="text-3xl font-semibold mb-8">Rocket Data</h1>
             <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-200">
