@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Footer from './components/Footer';
-import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import SearchForm from './components/SearchForm';
 import DataGrid from './components/DataGrid';
@@ -64,9 +63,9 @@ function App() {
 
   return (
     <div>
-      <Navbar />
-
-      <Banner />
+      <div className='relative'>
+        <Banner />
+      </div>
 
       <div className="container mx-auto px-4 py-8">
         <SearchForm onSubmit={handleSearch} />
