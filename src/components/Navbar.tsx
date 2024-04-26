@@ -39,7 +39,7 @@ const Navbar = () => {
     return (
         <div className="flex w-full justify-between px-4 py-5">
             <section className="flex items-center gap-10">
-                <h1 className="flex-shrink-0 text-white font-extrabold text-4xl">SpaceX</h1>
+                <h1 className="flex-shrink-0 text-white font-extrabold lg:ml-[40%] lg:mr-[20%] text-4xl">SpaceX</h1>
                 {isSideMenuOpen && <MobileNav closeSideMenu={closeSideMenu} />}
                 <div className="hidden md:flex items-center gap-20 px-[120px] transition-all">
                     {navItems.map((d, i) => (
