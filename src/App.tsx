@@ -5,12 +5,16 @@ import Navbar from './components/Navbar';
 import Banner from './components/Banner';
 import SearchForm from './components/SearchForm';
 import DataGrid from './components/DataGrid';
+import Capsule from './components/Capsule';
 import { fetchRockets } from './services/RocketService';
+import { fetchCapsules } from './services/CapsuleService';
 import { Rocket } from './types/Rocket';
 
 function App() {
   const [rockets, setRockets] = useState<Rocket[]>([]);
+  const [capsules, setCapsules] = useState<Capsule[]>([]);
   const [filteredRockets, setFilteredRockets] = useState<Rocket[]>([]);
+  const [filteredCapsules, setFilteredCapsules] = useState<Capsule[]>([]);
 
   useEffect(() => {
     const fetchRocketsData = async () => {
@@ -26,16 +30,36 @@ function App() {
     fetchRocketsData();
   }, []);
 
-  const handleSearch = (searchQuery: { status: string; originalLaunch: string; type: string }) => {
-    // Filter rockets based on search query
-    const filtered = rockets.filter((rocket) => {
+  useEffect(() => {
+    const fetchCapsulesData = async () => {
+      try {
+        const capsulesData = await fetchCapsules();
+        setCapsules(capsulesData);
+        setFilteredCapsules(capsulesData);
+      } catch (error) {
+        console.error('Error fetching capsules:', error);
+      }
+    };
+
+    fetchCapsulesData();
+  }, []);
+
+  const handleSearch = (searchQuery: { rocket_name: string; status: string; original_Launch: string; type: string }) => {
+    const filteredRockets = rockets.filter((rocket) => {
       const statusMatch = searchQuery.status === '' || rocket.active === (searchQuery.status.toLowerCase() === 'active');
-      const launchDateMatch = searchQuery.originalLaunch === '' || rocket.first_flight === searchQuery.originalLaunch;
+      const launchDateMatch = searchQuery.original_Launch === '' || rocket.first_flight === searchQuery.original_Launch;
       const typeMatch = searchQuery.type === '' || rocket.rocket_type.toLowerCase() === searchQuery.type.toLowerCase();
       return statusMatch && launchDateMatch && typeMatch;
     });
+    setFilteredRockets(filteredRockets);
 
-    setFilteredRockets(filtered);
+    const filteredCapsules = capsules.filter((capsule) => {
+      const statusMatch = searchQuery.status === '' || capsule.status.toLowerCase() === searchQuery.status.toLowerCase();
+      const launchDateMatch = searchQuery.original_Launch === '' || capsule.original_launch === searchQuery.original_Launch;
+      const typeMatch = searchQuery.type === '' || capsule.type.toLowerCase() === searchQuery.type.toLowerCase();
+      return statusMatch && launchDateMatch && typeMatch;
+    });
+    setFilteredCapsules(filteredCapsules);
   };
 
   return (
@@ -47,6 +71,7 @@ function App() {
       <div className="container mx-auto px-4 py-8">
         <SearchForm onSubmit={handleSearch} />
         <DataGrid rockets={filteredRockets} />
+        <Capsule capsules={filteredCapsules} />
       </div>
       <Footer />
     </div>

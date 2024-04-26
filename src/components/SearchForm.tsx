@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 
-const SearchForm: React.FC<{ onSubmit: (formData: { status: string; originalLaunch: string; type: string }) => void }> = ({ onSubmit }) => {
+const SearchForm: React.FC<{ onSubmit: (formData: { rocket_name:string; status: string; original_Launch: string; type: string }) => void }> = ({ onSubmit }) => {
     const [status, setStatus] = useState('');
-    const [originalLaunch, setOriginalLaunch] = useState('');
+    const [original_Launch, setOriginal_Launch] = useState('');
+    // eslint-disable-next-line
+    const [rocket_name, setRocket_name] = useState('');
     const [type, setType] = useState('');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        onSubmit({ status, originalLaunch, type });
+        onSubmit({ rocket_name, status, original_Launch, type });
     };
 
     return (
         <div className="container mx-auto py-4">
             <form className="flex justify-center" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Search by status" className="px-4 py-2 mr-2" value={status} onChange={(e) => setStatus(e.target.value)} />
-                <input type="date" placeholder="Original launch" className="px-4 py-2 mr-2" value={originalLaunch} onChange={(e) => setOriginalLaunch(e.target.value)} />
+                <input type="date" placeholder="Original launch" className="px-4 py-2 mr-2" value={original_Launch} onChange={(e) => setOriginal_Launch(e.target.value)} />
                 <select className="px-4 py-2" value={type} onChange={(e) => setType(e.target.value)}>
                     <option value="">Select type</option>
                     <option value="rocket">Rocket</option>
