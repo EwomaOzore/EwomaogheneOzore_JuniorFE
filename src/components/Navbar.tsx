@@ -78,7 +78,7 @@ const Navbar = () => {
 
             <FontAwesomeIcon icon={faBars}
                 onClick={openSideMenu}
-                className="cursor-pointer text-4xl md:hidden"
+                className="cursor-pointer text-4xl text-white md:hidden"
             />
         </div>
     );
