@@ -8,7 +8,7 @@ const Banner: React.FC = () => {
             <div className="absolute top-0 left-0 w-full z-10">
                 <Navbar />
             </div>
-            <div className="absolute flex flex-col items-end top-[40%] left-1/2 transform w-[35%] text-right text-white">
+            <div className="absolute flex flex-col items-end top-[40%] opacity-0 md:opacity-100 left-1/2 transform w-[35%] text-right text-white">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4  animate-fade-in delay-500">Explore the Cosmos</h1>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold mb-6 animate-fade-in delay-1000">Discover the Wonders of Space</h2>
                 <p className="text-lg md:text-xl mb-6 animate-fade-in delay-1500">Embark on a journey to unravel the mysteries of the universe. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
